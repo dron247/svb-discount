@@ -1,0 +1,66 @@
+﻿<Window x:Class="RandomDiscount.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RandomDiscount"
+        xmlns:gif="clr-namespace:XamlAnimatedGif;assembly=XamlAnimatedGif"
+        mc:Ignorable="d"
+        Title="Скидочка 9000" Height="350" Width="525"
+        Background="#F5E8E5" Loaded="Window_Loaded">
+    <Window.Resources>
+        <Style x:Key="TransparentStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="Transparent">
+                            <ContentPresenter/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="Settings"
+                Grid.Row="0" 
+                Width="24" 
+                Height="24"
+                Padding="2"
+                HorizontalAlignment="Right"
+                Style="{StaticResource TransparentStyle}" Click="Settings_Click">
+            <Image Source="../Res/ic_launcher.png"/>
+        </Button>
+        <StackPanel Grid.Row="1"
+                    VerticalAlignment="Stretch"
+                    HorizontalAlignment="Center"
+                    Orientation="Vertical">
+            <Image x:Name="MediaBlock" 
+                   Width="220" 
+                   Height="220"
+                   gif:AnimationBehavior.SourceUri="../Res/giphy.gif" 
+                   Visibility="Collapsed"/>
+            <TextBlock x:Name="Discount"
+                       Text="100%"
+                       HorizontalAlignment="Center"
+                       Visibility="Collapsed"
+                       FontSize="72" 
+                       FontWeight="Bold" 
+                       Foreground="#FFFF7070">
+                <TextBlock.Effect>
+                    <DropShadowEffect Color="#FFACACAC"/>
+                </TextBlock.Effect>
+            </TextBlock>
+            <Button x:Name="ButtonGame" Click="ButtonGame_Click">
+                <TextBlock Text="Узнать скидку"
+                           Padding="8,4,8,8"
+                           FontSize="24"/>
+            </Button>
+        </StackPanel>
+
+    </Grid>
+</Window>
