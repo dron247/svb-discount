@@ -17,7 +17,7 @@ using System.Windows.Shapes;
 
 namespace RandomDiscount {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Main window logic
     /// </summary>
     public partial class MainWindow : Window {
         /// <summary>
@@ -47,7 +47,7 @@ namespace RandomDiscount {
             EnterState(State.Game);
         }
 
-        // when Game gutton clicked
+        // when Game button clicked
         private void ButtonGame_Click(object sender, RoutedEventArgs e) {
             EnterState( // we select to which state we have to move the screen
                 currentState == State.Game ?
@@ -69,15 +69,15 @@ namespace RandomDiscount {
         void EnterState(State newState) {
             switch (newState) {
                 case State.Game: // going to state with cat
-                    MediaBlock.Visibility = Visibility.Visible;
-                    Discount.Visibility = Visibility.Collapsed;
-                    ButtonText.Text = Properties.Resources.ButtonGame;
+                    MediaBlock.Visibility = Visibility.Visible; // show the cat
+                    Discount.Visibility = Visibility.Collapsed; // hide discount
+                    ButtonText.Text = Properties.Resources.ButtonGame; // set button text
                     break;
-                case State.Results: // calculater results and show result items
+                case State.Results: // calculate results and show what we have
                     Discount.Text = $"{randomizerService.Result}%"; // our discount
-                    MediaBlock.Visibility = Visibility.Collapsed;
-                    Discount.Visibility = Visibility.Visible;
-                    ButtonText.Text = Properties.Resources.ButtonAgain;
+                    MediaBlock.Visibility = Visibility.Collapsed; // hide the cat
+                    Discount.Visibility = Visibility.Visible; // show discount
+                    ButtonText.Text = Properties.Resources.ButtonAgain; // change button text
                     break;
             }
             currentState = newState;
