@@ -55,8 +55,11 @@
                     <DropShadowEffect Color="#FFACACAC"/>
                 </TextBlock.Effect>
             </TextBlock>
-            <Button x:Name="ButtonGame" Click="ButtonGame_Click">
-                <TextBlock Text="Узнать скидку"
+            <Button x:Name="ButtonGame" 
+                    Click="ButtonGame_Click"
+                    Margin="8">
+                <TextBlock x:Name="ButtonText"
+                           Text="Узнать скидку"
                            Padding="8,4,8,8"
                            FontSize="24"/>
             </Button>

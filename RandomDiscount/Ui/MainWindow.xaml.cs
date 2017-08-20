@@ -20,57 +20,67 @@ namespace RandomDiscount {
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window {
+        /// <summary>
+        /// Describes the UI state
+        /// </summary>
         enum State {
-            Before,
-            After
+            Game, // the screen with a cat
+            Results // the screen with a results
         }
 
+        // contains current state of screen
         private State currentState;
+        // this is where our randomizing logic is resting
         private RandomizerService randomizerService;
 
+        // CTOR
         public MainWindow() {
             InitializeComponent();
         }
 
+        #region Event handlers
+        // when window is loaded
+        private void Window_Loaded(object sender, RoutedEventArgs e) {
+            // we initialize a randomizer
+            randomizerService = new RandomizerService(Properties.Settings.Default);
+            // and initiate the screen ith a state with cat
+            EnterState(State.Game);
+        }
+
+        // when Game gutton clicked
         private void ButtonGame_Click(object sender, RoutedEventArgs e) {
-            EnterState(
-                currentState == State.Before ?
-                State.After :
-                State.Before
+            EnterState( // we select to which state we have to move the screen
+                currentState == State.Game ?
+                State.Results :
+                State.Game
             );
         }
 
+        // after click on Settings button
         private void Settings_Click(object sender, RoutedEventArgs e) {
-            new SettingsWindow().Let(settings => {
+            // we construct and open Settings screen
+            new SettingsWindow().Let(settings => { // check that Let stuff, I stole it in Kotlin
                 settings.Owner = this;
                 settings.ShowDialog();
             });
         }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e) {
-            randomizerService = new RandomizerService();
-            EnterState(State.Before);
-        }
+        #endregion
 
         void EnterState(State newState) {
             switch (newState) {
-                case State.Before:
+                case State.Game: // going to state with cat
                     MediaBlock.Visibility = Visibility.Visible;
                     Discount.Visibility = Visibility.Collapsed;
-                    ButtonGame.Content = Properties.Resources.ButtonGame;
+                    ButtonText.Text = Properties.Resources.ButtonGame;
                     break;
-                case State.After:
-                    CalculateDiscount();
+                case State.Results: // calculater results and show result items
+                    Discount.Text = $"{randomizerService.Result}%"; // our discount
                     MediaBlock.Visibility = Visibility.Collapsed;
                     Discount.Visibility = Visibility.Visible;
-                    ButtonGame.Content = Properties.Resources.ButtonAgain;
+                    ButtonText.Text = Properties.Resources.ButtonAgain;
                     break;
             }
             currentState = newState;
-        }
-
-        void CalculateDiscount() {
-            //TODO - calculate
         }
     }
 }
