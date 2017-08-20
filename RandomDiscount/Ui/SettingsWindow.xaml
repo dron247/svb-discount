@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:RandomDiscount.Ui"
         mc:Ignorable="d"
         Title="Настроечки" Height="300" Width="300" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" Loaded="Window_Loaded" Closing="Window_Closing">
-    <StackPanel Margin="24,12">
+    <StackPanel Margin="32,16">
         <TextBlock Text="Минимальная скидка"/>
         <StackPanel Orientation="Horizontal">
             <Slider x:Name="SliderMin" 
@@ -33,7 +33,7 @@
             <TextBlock Text="{Binding ElementName=SliderMax, Path=Value}"/>
         </StackPanel>
         
-        <TextBlock Text="Вероятность максимума"/>
+        <TextBlock Text="Распределение"/>
         <StackPanel Orientation="Horizontal">
             <Slider x:Name="SliderFactor" 
                 Maximum="100"
@@ -42,7 +42,7 @@
                 Width="200" 
                 VerticalAlignment="Top" 
                 IsSnapToTickEnabled="True"
-                TickFrequency="1"/>
+                TickFrequency="1" IsDirectionReversed="True"/>
             <TextBlock Text="{Binding ElementName=SliderFactor, Path=Value}"/>
         </StackPanel>
     </StackPanel>

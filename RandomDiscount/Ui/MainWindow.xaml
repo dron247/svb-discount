@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:RandomDiscount"
         xmlns:gif="clr-namespace:XamlAnimatedGif;assembly=XamlAnimatedGif"
         mc:Ignorable="d"
-        Title="Скидочка 9000" Height="350" Width="525"
+        Title="Скидочка 9000" Height="480" Width="480" ResizeMode="NoResize"
         Background="#F5E8E5" Loaded="Window_Loaded">
     <Window.Resources>
         <Style x:Key="TransparentStyle" TargetType="{x:Type Button}">
@@ -25,6 +25,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Button x:Name="Settings"
                 Grid.Row="0" 
@@ -35,7 +37,7 @@
                 Style="{StaticResource TransparentStyle}" Click="Settings_Click">
             <Image Source="../Res/ic_launcher.png"/>
         </Button>
-        <StackPanel Grid.Row="1"
+        <StackPanel Grid.Row="2"
                     VerticalAlignment="Stretch"
                     HorizontalAlignment="Center"
                     Orientation="Vertical">
@@ -57,7 +59,7 @@
             </TextBlock>
             <Button x:Name="ButtonGame" 
                     Click="ButtonGame_Click"
-                    Margin="8">
+                    Margin="16,24">
                 <TextBlock x:Name="ButtonText"
                            Text="Узнать скидку"
                            Padding="8,4,8,8"

@@ -27,7 +27,7 @@ namespace RandomDiscount.Services {
 
 
         private int CalculateRandom(Random randomizer, int min, int max, int factor) {
-            
+
             if (factor >= 100) {
                 return max;
             }
@@ -36,11 +36,17 @@ namespace RandomDiscount.Services {
                 return min;
             }
 
-            var range = Enumerable.Range(min, max - min);
-            var index = randomizer.Next(range.Count() - 1);
-
-
-            return range.ToArray()[index];
+            // black magic with random to give it more spread
+            int result = 0;
+            if (factor == 0) factor = 1;
+            for (int i = 0; i < max; i++) {
+                result = randomizer.Next(min, max + 1);
+                var percent = max / 100f;
+                var vll = result / percent;
+                if (vll < factor) break;
+            }
+            
+            return result;
         }
     }
 }
