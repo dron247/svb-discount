@@ -21,53 +21,74 @@
             </Setter>
         </Style>
     </Window.Resources>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
-        <Grid.Background>
-            <ImageBrush ImageSource="../Res/2017_08_21_17-50-01.jpg" Stretch="UniformToFill"/>
-        </Grid.Background>
-        <Button x:Name="Settings"
+    <Grid
+        VerticalAlignment="Stretch"
+        HorizontalAlignment="Stretch">
+        <Grid x:Name="Main" VerticalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="16"/>
+            </Grid.RowDefinitions>
+            <Grid.Background>
+                <ImageBrush ImageSource="../Res/2017_08_21_17-50-01.jpg" Stretch="UniformToFill"/>
+            </Grid.Background>
+            <!-- Settings -->
+            <Button x:Name="Settings"
                 Grid.Row="0" 
                 Width="24" 
                 Height="24"
                 Padding="2"
                 HorizontalAlignment="Right"
                 Style="{StaticResource TransparentStyle}" Click="Settings_Click">
-            <Image Source="../Res/ic_launcher.png"/>
-        </Button>
-        <StackPanel Grid.Row="2"
+                <Image Source="../Res/ic_launcher.png"/>
+            </Button>
+            
+            <StackPanel Grid.Row="2"
                     VerticalAlignment="Stretch"
                     HorizontalAlignment="Center"
                     Orientation="Vertical">
-            <Image x:Name="MediaBlock" 
+                
+                <Border x:Name="MediaBlock" 
                    Width="220" 
                    Height="220"
-                   gif:AnimationBehavior.SourceUri="../Res/giphy.gif" 
                    Visibility="Collapsed"/>
-            <TextBlock x:Name="Discount"
+                
+                <TextBlock x:Name="Discount"
                        Text="100%"
                        HorizontalAlignment="Center"
                        Visibility="Collapsed"
                        FontSize="72" 
                        FontWeight="Bold" 
                        Foreground="Red">
-                <TextBlock.Effect>
-                    <DropShadowEffect Color="#FFACACAC"/>
-                </TextBlock.Effect>
-            </TextBlock>
-            <Button x:Name="ButtonGame" 
-                    Click="ButtonGame_Click"
-                    Margin="16,24">
-                <TextBlock x:Name="ButtonText"
+                    <TextBlock.Effect>
+                        <DropShadowEffect Color="#FFACACAC"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+                
+                <Button x:Name="ButtonGame" 
+                    Click="ButtonGame_Click">
+                    <TextBlock x:Name="ButtonText"
                            Text="Узнать скидку"
                            Padding="8,4,8,8"
                            FontSize="24"/>
-            </Button>
-        </StackPanel>
+                </Button>
+            </StackPanel>
+        </Grid>
+        
+        <!-- Progress -->
+        <Border 
+            x:Name="progress"
+            VerticalAlignment="Stretch"
+            HorizontalAlignment="Stretch"
+            Background="White">
 
+            <Image Width="220" 
+                   Height="220"
+                   gif:AnimationBehavior.SourceUri="../Res/gifmaker.gif" 
+                   Visibility="Visible"/>
+
+        </Border>
     </Grid>
 </Window>
