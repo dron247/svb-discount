@@ -18,16 +18,16 @@ using System.Windows.Threading;
 
 namespace RandomDiscount {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// MainWindow.xaml code behind logic
     /// </summary>
     public partial class MainWindow : Window {
         /// <summary>
         /// Describes the UI state
         /// </summary>
         enum State {
-            Game, // the screen with a cat
+            Game, // main screen
             Progress, // progress screen
-            Results // the screen with a results
+            Results // the screen with results
         }
 
         // contains current state of screen
@@ -49,7 +49,7 @@ namespace RandomDiscount {
             EnterState(State.Game);
         }
 
-        // when Game gutton clicked
+        // when Game button clicked
         private void ButtonGame_Click(object sender, RoutedEventArgs e) {
             EnterState( // we select to which state we have to move the screen
                 currentState == State.Game ?
@@ -68,15 +68,19 @@ namespace RandomDiscount {
         }
         #endregion
 
+        /// <summary>
+        /// Here our main screen logic is
+        /// </summary>
+        /// <param name="newState">The state we should open</param>
         void EnterState(State newState) {
             switch (newState) {
-                case State.Game: // going to state with cat
+                case State.Game: // going to main screen, "nothing" state
                     MediaBlock.Visibility = Visibility.Visible;
                     Discount.Visibility = Visibility.Collapsed;
                     ButtonText.Text = Properties.Resources.ButtonGame;
                     progress.Visibility = Visibility.Hidden;
                     break;
-                case State.Progress:
+                case State.Progress: // progress screen has it's timer and automatically switches to Results
                     progress.Visibility = Visibility.Visible;
                     new DispatcherTimer().Let(timer => {
                         timer.Interval = new TimeSpan(0, 0, 2);
@@ -86,9 +90,8 @@ namespace RandomDiscount {
                         };
                         timer.Start();
                     });
-
                     break;
-                case State.Results: // calculater results and show result items
+                case State.Results: // calculate results and show result items
                     Discount.Text = $"{randomizerService.Result}%"; // our discount
                     MediaBlock.Visibility = Visibility.Collapsed;
                     Discount.Visibility = Visibility.Visible;
