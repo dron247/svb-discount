@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:RandomDiscount"
         xmlns:gif="clr-namespace:XamlAnimatedGif;assembly=XamlAnimatedGif"
         mc:Ignorable="d"
-        Title="Скидочка 9000" Height="480" Width="480" ResizeMode="NoResize"
+        Title="Скидочка 9000" Height="476" Width="454" ResizeMode="NoResize"
         Background="#F5E8E5" Loaded="Window_Loaded">
     <Window.Resources>
         <Style x:Key="TransparentStyle" TargetType="{x:Type Button}">
@@ -26,8 +26,10 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Grid.Background>
+            <ImageBrush ImageSource="../Res/2017_08_21_17-50-01.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
         <Button x:Name="Settings"
                 Grid.Row="0" 
                 Width="24" 
@@ -52,7 +54,7 @@
                        Visibility="Collapsed"
                        FontSize="72" 
                        FontWeight="Bold" 
-                       Foreground="#FFFF7070">
+                       Foreground="Red">
                 <TextBlock.Effect>
                     <DropShadowEffect Color="#FFACACAC"/>
                 </TextBlock.Effect>
